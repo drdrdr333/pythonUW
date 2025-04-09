@@ -1,0 +1,50 @@
+Exceptions provide you the ability to program robustness into your code - they allow you to handle input, perform data validation and all sorts of other cool things!!
+
+the try, except block is the typical way of handling exceptions with python
+ex.
+	try:
+		with open(somefilename, r) as f:
+			# do some cool task
+
+	except FileNotFoundError:
+		print("a custom message telling the user hey your file was not found")
+
+
+whenever you do decide to handle the exceptions, you want to provide something useful to the end user
+
+with - this keyword is a context manager in python and handles the opening and closing of resources specifially as it relates to files;
+
+try:
+except:
+finally:
+
+the above is the normal block that will allow you to handle your exceptions, it basically is saying "hey let me try this risky block of code - if it errors out, handle that exception" - the finally block will always run so its a good spot to program in some print message, or closure of resouces etc
+
+ you always want to catch exceptions as close to where they have occurred as possible - take advantage of the 'else' keyword to accomplish this in the context of a try/except block
+
+ex.
+try:
+	#code
+except SomeError:
+	print()
+else:
+	will run if except does NOT run
+
+
+python also gives you the capacity to raise exception objects, whereby you can pass in a string and it will print it our - so be sure they are descriptive!!!
+
+be sure that the exception that you are raising matches the actual exception that could occur, a good process for this is to test the code to break it and get an exception, then write code to handle said exception and print a relevant, informative message
+
+
+pytest is a testing framework that allows you to run tests on a file pre-pended w/ the word 'test' or 'test_' and it will run all the defined tests you have in that file, be sure to name your tests 'test_one' or 'test_add' etc.
+
+ex. filename =  test_random.py
+#inside file
+def test_one():
+	assert my_module_function(1, 2) == 3
+
+pytest test_random.py ---> runs your test!
+
+pytest.raises(ExceptionObject) --> the .raises method will allow us to test our functions to see if they raise the proper exceptions
+
+Be mindfule that exceptions are treated as objects in python and as long as we assign a name to the exception object, we can take advantage of its attributes and flesh out certain things

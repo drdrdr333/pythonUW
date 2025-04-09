@@ -1,0 +1,39 @@
+dictionaries are probably one of the most powerful tools the python language provides us
+
+there are multipl ways to create
+
+my_dict = dict(key1=val1, key2=val2)
+
+d = {}
+d['key1'] = val1
+d['key2'] = val2
+
+print(d) --> {'key1': val1, 'key2': val2}
+
+the way you access values in dictionaries is by indexing their key - ex. print(d['key1']) --> val1
+
+we could also make a call to d.values() --> this would provide us a sequence of all the values
+
+d.keys() would provide us a sequence of all the keys
+
+when you iterate dictionaries it iterates over the keys of the dict
+
+ex.
+my_d = {'key1': val1, 'key2': val2}
+
+for x in my_d:
+	print(x)
+
+prints  'key1'
+	then 'key2'
+
+.get() method allows us to grab a particular key from the dict to return its respective value pair
+
+sorted() library/module allows you to sort a dictionari based upon a key that you pass it
+
+
+sets in python are unordered collections of values, typically non changing within python - I would argue they are most useful when interfacing with a database
+
+.update() method also allows you to pass a sequence of items to the set object and update it
+
+.pop() method for both sets and dicts allows you to remove items

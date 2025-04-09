@@ -1,0 +1,77 @@
+classes allow us to model items in the real world
+
+classes are definitions, or blueprints of objects that are in the real world - classes have attributes and methods, the attributes are akin to the nouns or the the things 'about' the object, what does the object have? what are its characteristics?
+
+methods are the behaviours of the object, the verbs of the object, what the object does
+
+the purpose of classes in a language is to provide a mechanism for organizing our code and to bring to the surface some of the cool characteristic of OOP such as data encapsulation, meaning data will stay unique to the object, the ability for you to subclass off of a base class - or create parent/child relationships, and the ability for you to make different classes or methods within classes reusable in seperate contexts - polyorphism
+
+classes allow for various scopes within the class - class attributes are tied to every instance, instance attributes will be the same but unique and tied to the individual instance
+
+the instance can overwrite its class attributes and have it be unique for whatever reason, if the class attribute is a mutable type, then every instance will point to the class attribute and can see that changes going on because each instance points to the same underlying object, so if we mutate that list object - every instance of the class will change it
+
+when you assign new values to an instances class attribute, you are bounding that 'name', within the instances namespace, to a seperate value, therefore other instances of the class may not be able to see the original class attributes
+
+ex.
+In [8]: class C:
+   ...:     this = 5
+   ...:     def __init__(self, that):
+   ...:         self.that = that
+In [32]: c1 = C(10)
+
+In [33]: c2 = C(20)
+
+In [18]: c1.this
+Out[18]: 5
+
+In [19]: c1.that
+Out[19]: 10
+
+In [20]: c2.that
+Out[20]: 20
+
+In [21]: C.this = 100
+
+In [22]: c1.this
+Out[22]: 100
+
+In [23]: c2.this
+Out[23]: 100
+
+In [24]: c1.that = 25
+
+In [25]: c1.that
+Out[25]: 25
+
+In [26]: c2.that
+Out[26]: 20
+
+In [27]: c1.this = 500  ## right here we are saying, go into the 'c1' namespace, bound the name 'this' to a value, it only gets bound within that namespace even though 'this' is a class attribute, we have to change the base classes attribute for that change to permeate all the instances!!
+
+In [28]: c2.this
+Out[28]: 100
+
+In [29]: c1.this
+Out[29]: 500
+
+In [30]: C.this
+Out[30]: 100
+
+
+
+the vars() function will allow you to see what names are bound within a particular namespace and what they are bound to
+
+the basic structure of a class:
+
+class Point:
+	def __init__(self, x, y):
+		self.x = x
+		self.y = y
+
+the __init__ is a special method in python, it is the 'constructor' or the 'initailizer' of objects when you call the class
+
+ex. p = Point(1,2) --> when you call point, p gets initialized as an instance of the class 'Point', or an object of type 'Point'
+
+the self keyword is referencing the instance being constructed upon the call, every method within the class must have a 'self' unless its a class method in which case its a cls, but self is referring to the instance that is calling upon the class - in our previous example, our 'self' would be 'p'
+
+within the namespace of 'Point', self is the instance, its where all the instance specific data is - x and y are attributes, and if we defined a method it would also accept self

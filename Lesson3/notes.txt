@@ -1,0 +1,259 @@
+Sequences within python can hold multiple types of data 
+
+ex. nums = [1,2,3,4,5] 
+ex. combo = ['str', 22, 'hello']
+
+We can loop thru the sequences and return each of the items contained within the sequence, there are also special methods to help us determine membership within the sequence
+
+ex. 1 in nums ---> returns True
+ex. 'str' in combo ---> returns True
+
+Python allows us the ability to add to the list via concatentation, and it is a simple += operation
+
+ex. nums += [6,7]
+print(nums) ---> [1,2,3,4,5,6,7]
+
+You do have the ability to multiply the items of the list if you so choose, but be very careful in understanding how this is actually going to function as it may be tricky...
+
+
+Length allows us to determine how many elements/items are contained within our sequence. Len() is a built in function that we can pass an argument of a sequence, and it will return to us the amount of items contained within the sequence in the form of an integer.
+
+Len() function supplied with a dict argument returnns the amount of keys
+
+Indexing starts at 0 in python as with most other languages we are familiar with. 
+
+ex. index 0 1 2 3
+	 [4,1,9,8]
+   length 1 2 3 4
+
+
+It can really help if you think about slicing this way:
+
+Think of the indexes as pointing to the spaces between the items:
+
+a       b   u   n   c   h       o   f       w   o   r   d   s
+|   |   |   |   |   |   |   |   |   |   |   |   |   |   |   |
+0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15
+
+sequence[start:stop:step] returns all sequence[i] for which start<=i<stop --- non-inclusive on the stop item
+
+the stepper is simply the amount of items that get stepped in your slice
+
+ex.
+st = 'Audry'
+
+new = st[0:2]
+print(new) ---> 'Au'
+
+Since a tuple is a sequence, be mindful that we can also slice tuples!
+
+Think of lists as containing homogenous data, basically data of the same type - you want to leverage lists in this way and do your best NOT to mix types.
+
+Think of tuples as heterogenous sequences in which you can mix types. Tuples are also immutable, so when working with tuples, in order to manipulate the sequence, you may need to take advantage of type conversion/type casting 
+
+
+
+Immutable		Mutable
+String			List
+Integer Float Tuple	Dictionary
+
+Be very mindful of how we bind names to mutable data types, because the multiple names will essentially be pointing to the same object, so if we update the object, then our binding/name reference changes on both fronts. If we want to mutate an object that is referenced by multiple names, we need to either create a copy (deep copy) of the object and then mutate it. Or create a new object, add in all items of the original object, and then mutate. Make sure if you run mutations, or methods on your sequences - you create copies of the original prior to running the mutation
+
+This brings up the fact that we do NOT want to use mutable objects for default arguments. The behavior wont be what we expect if we do this. We need to set the default arg to None, and then run a conditional that checks it, and creates a sequence object if the condition is true.
+
+ex. def my_fn(count, the_sequence=None):
+	if the_sequence is None:
+		the_sequence = []
+
+
+Convention
+Lists are typically homogeneous collections: -- they always contain values of the same type -- they simplify iterating, sorting, etc
+
+Tuples are mixed types: -- they group multiple values into one logical thing -- they are similar to simple C structs.
+
+Other Considerations
+Do you need to do the same operation to each element?
+list
+Is there a small collection of values which make a single logical item?
+tuple
+Do you want to document that these values won't change?
+tuple
+Do you want to build it iteratively?
+list
+Do you need to transform, filter, etc?
+list
+
+
+The enumerate function is very useful for sequences, you can also run enumerate on tuples!!
+It allows you to print the index numbers, along with the value that is contained at that index number!!
+
+For loops can also take an optional else block. This is not a feature of most languages, but it can be handy. It is executed only when the loop exits normally (not via break):
+
+for x in range(10):
+    if x == 11:
+        break
+else:
+    print('finished')
+prints finished
+
+Leverage a for loop when we understand, numerically, how long we want a set of tasks to be run, if it is unclear when to end, run a while loop but be sure to iterate to get to completion!
+
+
+Text Files
+f = open('secrets.txt') 
+secret_data = f.read() 
+f.close()
+secret_data is a string
+
+In Python 3, files are opened by default in text mode, and the default encoding is UTF-8. This means that in the usual case, you get a proper Unicode string to work with, as UTF-8 is the most common encoding for text. Also, it is ASCII compatible, so ASCII Files with "just work". IF "Unicode" and "ASCII" mean nothing to you -- don't worry about it, just know that things will usually work for text, even non-English text. And if you get odd characters or an EncodingError, then your file is not UTF-8, and it's time to Google "Python Unicode".
+
+Binary Files
+In addition to text files, Python can open files in binary mode. This is just what you'd think: if the file contains text, you want text mode. If the file contains arbitrary binary data, you want binary mode.
+
+f = open('secrets.bin', 'rb') 
+    secret_data = f.read() 
+    f.close()
+secret_data is a byte string that contains the file contents. (See struct  for how to unpack byte data).
+
+All data in all files is binary -- that's how computers work. So in Python3, "text" actually means Unicode -- which is a particular system for matching characters to binary data.
+
+But this too is complicated; there are multiple ways that binary data can be mapped to Unicode text, known as "encodings". In Python, text files are by default opened with the "utf-8" encoding. These days, that mostly "just works".
+
+But if you read a binary file as text, then Python will try to interpret the bytes as utf-8 encoded text -- and this will likely fail:
+
+open("a_photo.jpg").read()
+causes an error.
+
+File Opening Modes
+f = open('secrets.txt', [mode])
+mode - meaning:
+
+r for reading – the default mode.
+r+ for both reading and writing.
+w for writing only. Overwrites the file if the file exists. If the file does not exist, creates a new file for writing.
+w+ for both writing and reading. Overwrites the existing file if the file exists. If the file does not exist, it creates a new file for reading and writing.
+rb for reading only in binary format.
+rb+ for both reading and writing in binary format.
+wb+ for both writing and reading in binary format. Overwrites the existing file if the file exists. If the file does not exist, it creates a new file for reading and writing.
+a for appending. If the file does not exist, it creates a new file for writing.
+ab for appending in binary format. If the file does not exist, it creates a new file for writing.
+a+ for both appending and reading. If the file exists it opens in append mode. If the file does not exist, it creates a new file for reading and writing.
+ab+ for both appending and reading in binary format. The file opens in  append mode. If the file does not exist, it creates a new file for reading and writing.
+x open for exclusive creation, failing if the file already exists
+These follow the Unix conventions. Note: 'w' modes always clear the file if it already exists!
+
+Text File Notes
+Text is default:
+
+Newlines are translated: \r\n -> \n
+ Use \*nix-style in your code: \n
+
+Note
+no difference between text and binary on \*nix
+but this is not true on Windows, and will cause an error.
+
+File Reading
+Reading part of a file:
+
+header_size = 4096 
+f = open('secrets.txt') 
+secret_header = f.read(header_size) 
+secret_rest = f.read() 
+f.close()
+
+Common Idioms
+for line in open('secrets.txt'): 
+        print(line)
+The file object is an iterable that iterates through the lines in a text file.
+
+ 
+
+f = open('secrets.txt') 
+
+while True: 
+    line = f.readline() 
+    if not line: 
+        break 
+    do_something_with_line()
+
+We will learn more about the keyword with later (it creates a "context manager"), but for now, just understand the syntax and the advantage over simply opening the file:
+
+ with open('workfile', 'r') as f: 
+     read_data = f.read() 
+ f.closed 
+ True
+You use with to open the file, and assign it a Pyhon name (f in this case).
+The file remains open while in the with block.
+At the end of the with block, the file is unconditionally closed, even if an Exception is raised.  You code will (mostly) work without it, but it's a good habit to get into to always use with to open a file.
+
+File Writing
+
+outfile = open('output.txt', 'w') 
+for i in range(10): 
+    outfile.write("this is line: %i\n"%i) 
+outfile.close()
+
+with open('output.txt', 'w') as f: 
+    for i in range(10): 
+       f.write("this is line: %i\n"%i)
+ 
+
+Paths and Directories
+Paths
+Paths are generally handled with simple strings.
+
+Relative paths (work relative to the current directory):
+
+'secret.txt' 
+'./secret.txt'
+Absolute paths:
+
+ '/home/luis/secret.txt'
+
+Either works with open(), etc.
+
+Relative paths are relative to the current working directory:
+
+os module
+os.getcwd() 
+os.chdir(path)
+os.path module
+os.path.split() 
+os.path.splitext() 
+os.path.basename() 
+os.path.dirname() 
+os.path.join() 
+os.path.abspath() 
+os.path.relpath()
+
+All are platform independent.
+
+Directories
+os.listdir() 
+os.mkdir() 
+os.walk()
+Note the shutil  module provides higher level operations.
+
+pathlib
+pathlib is a package for handling paths in an object oriented way. See http://pathlib.readthedocs.org/en/pep428/
+
+All the stuff in os.path and more:
+
+import pathlib
+pth = pathlib.Path('./')
+pth.is_dir() 
+pth.absolute() 
+.absolute() returns the full path: PosixPath('/Users/andy/projects/uw')
+
+.iterdir() allows iteration over directories. ry this:
+
+for f in pth.iterdir(): 
+    print(f) 
+
+And there is a really nifty way to join paths using "/":
+
+p = pathlib.Path.home()  # create a path to the user home dir.
+then
+
+p / "a_dir" / "one_more" / "a_filename" 
+will be PosixPath('/Users/Chris/a_dir/one_more/a_filename') 

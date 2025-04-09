@@ -1,0 +1,52 @@
+Strings can be considered linear sequences in python
+ ex. "hello world" is a sequence of characters that would be equivalent to ['h', 'e', 'l', 'l'...] so on and so forth
+
+string objects have a plethora of methods that we can run on those strings, to determine what the methods do it is advantageous to leverage the documentation - look it up
+
+\ is the symbol for allowing you to place a string literal within your linear sequence - there are all kinds of key letters to utilize after a \
+
+ex. print("Hello\t World") would return to us something like this
+Hello	 World - the \t tells the interpreter "Hey id like to have a tab after the word 'hello'"
+
+There are also a multitude of ways to format strings in python
+	ex. .format()
+	
+	name = "d"
+	print("Hello, {name}".format(name))
+
+The method of formatting strings that I appreciate the most in python is f-strings - allowing you to map in literal expressions or variables
+	ex.
+	name = "de"
+	age = 10
+	print("Hello, {name}. Your age is {age+1}.")
+The line above would return "Hello, de. Your age is 11."
+
+Boolean logic:
+
+and - if one of the expressions is falsy, the whole expression is false
+or - if one of the expressions is truthy, the whole is true
+
+or will also return the first truthy value
+ex. 34 or 10/0 ---> 34
+
+not returns the opposite bool of whatever it is supplied with
+
+you can also assign variables based upon conditional boolean expressions
+ex. y = 3 if 4>5 else 2
+
+print(y) ---> 2
+
+The built-in input functions - reference the documentation for any functionality questions - allows you to accepts input from a user and assigne that response/input to a variable as a string type. It is synonymous with the scanner object of java, only allowing you to directly assigne the response to a str
+
+
+In control flow in python if you have an elif statement after an if - the elif will only run in the instance that the if block is not evaluated.
+
+However, if you write sequential if blocks in python, both will be tested irregardless of whether the first is Truthy or not
+
+Functions are their own local namespace within python, the global context is considered read-only, so if i define a symbol to a value within a function, you wont have access to that symbol/value relationship outside of the function because that relationship was local within the function
+
+be mindful of how we define functions within python, the arguments we supply the functions must be in the order that we defined the params to be accepted - we can also assign default parameters, that will be overriden if we suppply an argument in that parameters position - which is why positional params and arguments are so important to be cognizant of
+
+ex. def my_f(a, b=4, c=5)
+
+You can call my_f(9) or call my_f(9,6,2) - in the second call b= 6 and c = 2; in the first call b=4 (its default), same with c

@@ -1,0 +1,35 @@
+Create a file in a text editor called questions.csv that stores the following header and questions. Feel free to add more fields and questions.
+question_id,question
+12,What is your phone number?
+10,What is your email?
+
+
+
+Create a python program that adds questions to our csv file.
+The program starts by reading in all the questions in the questions.csv file
+Prints them all out to the console, formatted nicely (try playing around with string formatting)
+Asks the user for a new question to add to the CSV file
+Generates a unique integer id for that question
+Appends the new question back into the file
+
+
+
+Create a file in a text editor called answers.csv that stores the following header and questions. Notice that interviewee is the same because we are linking it to a set of answers to a user, and the question_id field links our answer to a question. Feel free to add more fields and answers.
+interviewee,question_id,answer
+Anubhaw,12,(555) 555 - 5555
+Anubhaw,10,arya0@uw.edu
+
+
+
+Create a python program that adds answers to our csv file.
+The program starts by reading in all the answers in the answers.csv file
+Asks the interviewee for their name
+Reads in all the questions in the questions.csv file
+Prompts the user with every question and reads in the answer. Be sure to maintain the question_id relationship with every answer!
+Once all questions have been answered, append those answers back out into the answers.csv file
+
+
+Finally, we'll create a python program that prints both questions and answers.
+Reads in all questions in the questions.csv file
+Reads in all answers in the answers.csv file
+Prints out the questions, one at a time, along with the corresponding set of answers from all interviewees. Format it nicely!

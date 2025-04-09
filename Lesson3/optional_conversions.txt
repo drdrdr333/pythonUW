@@ -1,0 +1,32 @@
+def first_to_last(seq):
+    new_sequence = list(seq)
+    temp = new_sequence[-1]
+    new_sequence[-1] = new_sequence[0]
+    new_sequence[0] = temp
+    if seq.__class__() == ():
+        return tuple(new_sequence)
+    if seq.__class__() == '':
+        return''.join(new_sequence)
+    if seq.__class__() == []:
+        return list(new_sequence)
+
+
+for x in range(len(new_sequence)):
+        if x != 0 and x != len(seq)-1:
+            del(new_sequence[x])
+
+def delete_middle(seq):
+    return seq[0:len(seq):len(seq)-1] 
+
+def first_four_last_four(seq):
+    return seq[4:len(seq)-4]
+
+def reverse(seq):
+    return seq[-1::-1]
+
+def thirds(seq):
+    slicer = int(len(seq)/3)
+    new_first = seq[slicer*2::1]
+    new_middle = seq[0:slicer:1]
+    new_last = seq[(slicer*2)-(slicer):slicer*2:1]
+    return new_first+new_middle+new_last
